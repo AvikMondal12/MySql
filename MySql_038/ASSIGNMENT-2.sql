@@ -60,8 +60,26 @@ VALUES
 ('S005', 'ITEM 2', 156),
 ('S001', 'ITEM 1', 370);
 
-
+/*Display all the tables*/
 SELECT * FROM SUPPLIER ;
 SELECT * FROM ITEM;
+
+/*Find all the existing suppliers*/
 SELECT * FROM SUPPLY;
 
+/*Find all the items which are sold by at least one sopplier*/
+
+SELECT *
+FROM ITEM
+WHERE ITEMID IN (SELECT ITEM_ID FROM SUPPLY);
+
+/*Find all the suppliers who livein Delhi*/
+SELECT * FROM SUPPLIER WHERE CITY = 'Delhi';
+
+/*Find all the supplier who do not live in Kolkata*/
+SELECT * FROM SUPPLIER WHERE CITY!='Kolkata';
+
+/*Find all the supplier who do not sell any items */
+SELECT * 
+FROM SUPPLIER
+WHERE SID NOT IN (SELECT SID FROM SUPPLY);
