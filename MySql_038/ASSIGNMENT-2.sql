@@ -1,0 +1,67 @@
+CREATE DATABASE avik1;
+USE avik1;
+
+-- Supplier table
+CREATE TABLE SUPPLIER (
+    SID VARCHAR(10) PRIMARY KEY,
+    SNAME VARCHAR(50),
+    CITY CHAR(20)
+);
+
+-- Item table
+CREATE TABLE ITEM (
+    ITEMID VARCHAR(10) PRIMARY KEY,
+    INAME CHAR(50),
+    ICOLOR CHAR(20)
+);
+
+-- Supply table (relationship between supplier & item)
+CREATE TABLE SUPPLY (
+    SID VARCHAR(10),
+    ITEM_ID VARCHAR(10),
+    QUANTITY INT,
+    PRIMARY KEY (SID, ITEM_ID),
+    FOREIGN KEY (SID) REFERENCES SUPPLIER(SID),
+    FOREIGN KEY (ITEM_ID) REFERENCES ITEM(ITEMID)
+);
+
+
+INSERT INTO SUPPLIER (SID, SNAME, CITY)
+VALUES 
+('S001', 'Manish', 'Kolkata'),
+('S002', 'Hari', 'Delhi'),
+('S003', 'Kundan', 'Kolkata'),
+('S004', 'Sagar', 'Pathna'),
+('S005', 'Zahir', 'Delhi');
+SELECT * FROM SUPPLIER 
+
+ALTER TABLE ITEM
+ADD WEIGHT INT;
+
+
+ALTER TABLE ITEM
+MODIFY WEIGHT VARCHAR(10);
+
+INSERT INTO ITEM (ITEMID,INAME,ICOLOR,WEIGHT)
+VALUES
+('ITEM 1', 'Desk', 'Brown','20kg'),
+('ITEM 2', 'Chair', 'Red','7kg'),
+('ITEM 3', 'Board-i', 'Blue','15kg'),
+('ITEM 4', 'Board-ii', 'White','10kg'),
+('ITEM 5', 'Marker', 'Black','20gm');
+SELECT * FROM ITEM
+
+INSERT INTO supply (SID,ITEM_ID,QUANTITY)
+VALUES
+('S002', 'ITEM 2',210),
+('S001', 'ITEM 5', 200),
+('S005', 'ITEM 1', 125),
+('S002', 'ITEM 5', 500),
+('S005', 'ITEM 2', 156),
+('S001', 'ITEM 1', 370);
+
+
+SELECT * FROM SUPPLIER ;
+SELECT * FROM ITEM;
+SELECT * FROM SUPPLY;
+
